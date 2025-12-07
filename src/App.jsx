@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import cdjBase from './assets/cdj-base.png';
 import platter from './assets/platter.png';
+import bgPhoto1 from './assets/LevelUpBillGraham.jpg';
+import { Navbar, Footer } from './components/Layout';
 
+// Twinkling Stars Component
 const TwinklingStars = () => {
   const starPositions = [
     { top: '10%', left: '15%', size: 'text-4xl', delay: 0 },
@@ -49,6 +52,7 @@ const TwinklingStars = () => {
   );
 };
 
+// CDJ Loader Component
 const CDJLoader = ({ onLoadComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [percentage, setPercentage] = useState(0);
@@ -77,25 +81,25 @@ const CDJLoader = ({ onLoadComplete }) => {
         setPercentage(Math.floor(counter.value));
       }
     })
-    .to(pitchFillRef.current, {
-      width: '100%',
-      duration: 3,
-      ease: 'power2.inOut'
-    }, 0)
-    .to(platterRef.current, {
-      timeScale: 3,
-      duration: 3,
-      ease: 'power2.inOut'
-    }, 0)
-    .to(loaderRef.current, {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        setIsLoading(false);
-        if (onLoadComplete) onLoadComplete();
-      }
-    });
+      .to(pitchFillRef.current, {
+        width: '100%',
+        duration: 3,
+        ease: 'power2.inOut'
+      }, 0)
+      .to(platterRef.current, {
+        timeScale: 3,
+        duration: 3,
+        ease: 'power2.inOut'
+      }, 0)
+      .to(loaderRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          setIsLoading(false);
+          if (onLoadComplete) onLoadComplete();
+        }
+      });
 
     // Subtle wobble effect
     gsap.to(platterRef.current, {
@@ -119,16 +123,12 @@ const CDJLoader = ({ onLoadComplete }) => {
       ref={loaderRef}
       className="fixed top-0 left-0 w-full h-full bg-black flex flex-col justify-center items-center z-[9999] overflow-hidden"
     >
-      {/* Twinkling Stars */}
       <TwinklingStars />
       
-      {/* Neon green glow effect in background */}
       <div className="absolute inset-0 bg-gradient-radial from-green-400/10 via-transparent to-transparent" />
       
       {/* CDJ Container */}
       <div className="relative w-[600px] h-[600px] flex items-center justify-center z-10">
-        
-        {/* CDJ Base (non-rotating) */}
         <img 
           src={cdjBase}
           alt="CDJ Base"
@@ -136,7 +136,6 @@ const CDJLoader = ({ onLoadComplete }) => {
           style={{ filter: 'drop-shadow(0 20px 60px rgba(0, 255, 0, 0.4))' }}
         />
         
-        {/* Spinning Platter Overlay */}
         <img
           ref={platterRef}
           src={platter}
@@ -153,14 +152,12 @@ const CDJLoader = ({ onLoadComplete }) => {
         />
       </div>
 
-      {/* Loading Text */}
       <div className="mt-8 text-white text-2xl font-bold tracking-[5px] uppercase z-10" style={{ 
         textShadow: '0 0 20px rgba(0, 255, 0, 1), 0 0 40px rgba(0, 255, 0, 0.6)'
       }}>
         Loading
       </div>
 
-      {/* Percentage */}
       <div className="mt-4 text-6xl font-black font-mono z-10" style={{
         color: '#00ff00',
         textShadow: '0 0 30px rgba(0, 255, 0, 1), 0 0 60px rgba(0, 255, 0, 0.6), 0 0 90px rgba(0, 255, 0, 0.3)'
@@ -168,7 +165,6 @@ const CDJLoader = ({ onLoadComplete }) => {
         {percentage}%
       </div>
 
-      {/* Progress Bar */}
       <div className="mt-8 w-[400px] h-3 bg-gray-900 rounded-full overflow-hidden border-2 z-10" style={{
         borderColor: 'rgba(0, 255, 0, 0.4)',
         boxShadow: '0 0 20px rgba(0, 255, 0, 0.3)'
@@ -195,79 +191,47 @@ export default function App() {
       <CDJLoader onLoadComplete={() => setShowContent(true)} />
       
       {showContent && (
-        <div className="min-h-screen bg-black flex flex-col items-center justify-center text-center px-4 relative">
-          {/* Twinkling Stars on Main Page */}
-          <TwinklingStars />
+        <div className="min-h-screen bg-black flex flex-col relative">
           
-          <h1 className="text-8xl font-black mb-5 tracking-tight z-10" style={{
-            color: '#fff',
-            textShadow: '0 0 40px rgba(0, 255, 0, 1), 0 0 80px rgba(0, 255, 0, 0.5), 0 0 120px rgba(0, 255, 0, 0.3)'
-          }}>
-            LEVEL UP
-          </h1>
-          <p className="text-2xl font-bold tracking-wider mb-2 z-10" style={{
-            color: '#00ff00',
-            textShadow: '0 0 20px rgba(0, 255, 0, 0.8)'
-          }}>
-            Press play to experience the music
-          </p>
+          {/* Background Image with Wash Effect */}
+          <div 
+            className="fixed inset-0 z-0"
+            style={{
+              backgroundImage: `url(${bgPhoto1})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              opacity: '0.5',
+              filter: 'grayscale(20%) brightness(0.7)'
+            }}
+          />
           
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl z-10">
-            <div className="p-8 bg-gradient-to-br from-gray-900 to-black rounded-lg border-2 transition-all" style={{
-              borderColor: 'rgba(0, 255, 0, 0.2)',
-              boxShadow: '0 0 20px rgba(0, 255, 0, 0.1)'
+          {/* Green overlay for theme consistency */}
+          <div 
+            className="fixed inset-0 z-0"
+            style={{
+              background: 'radial-gradient(circle at center, rgba(0, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%)',
+              mixBlendMode: 'multiply'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.6)';
-              e.currentTarget.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.2)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.1)';
-            }}>
-              <h2 className="text-2xl font-black mb-4 tracking-wider" style={{
-                color: '#00ff00',
-                textShadow: '0 0 15px rgba(0, 255, 0, 0.6)'
-              }}>MUSIC</h2>
-              <p className="text-gray-300">Latest tracks and releases</p>
+          />
+          
+          <Navbar />
+          
+          <main className="flex-grow pt-20 relative z-10">
+            <TwinklingStars />
+
+            <div className="flex flex-col items-center justify-center text-center px-4 py-20 min-h-screen">
+              <h1 className="text-8xl font-black mb-5 tracking-tight z-10" style={{ 
+                color: '#fff',
+                textShadow: '0 0 40px rgba(0, 255, 0, 1), 0 0 80px rgba(0, 255, 0, 0.5), 0 0 120px rgba(0, 255, 0, 0.3)'
+              }}>
+                LEVEL UP
+              </h1>
             </div>
-            <div className="p-8 bg-gradient-to-br from-gray-900 to-black rounded-lg border-2 transition-all" style={{
-              borderColor: 'rgba(0, 255, 0, 0.2)',
-              boxShadow: '0 0 20px rgba(0, 255, 0, 0.1)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.6)';
-              e.currentTarget.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.2)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.1)';
-            }}>
-              <h2 className="text-2xl font-black mb-4 tracking-wider" style={{
-                color: '#00ff00',
-                textShadow: '0 0 15px rgba(0, 255, 0, 0.6)'
-              }}>TOUR</h2>
-              <p className="text-gray-300">Upcoming shows and events</p>
-            </div>
-            <div className="p-8 bg-gradient-to-br from-gray-900 to-black rounded-lg border-2 transition-all" style={{
-              borderColor: 'rgba(0, 255, 0, 0.2)',
-              boxShadow: '0 0 20px rgba(0, 255, 0, 0.1)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.6)';
-              e.currentTarget.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.2)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.1)';
-            }}>
-              <h2 className="text-2xl font-black mb-4 tracking-wider" style={{
-                color: '#00ff00',
-                textShadow: '0 0 15px rgba(0, 255, 0, 0.6)'
-              }}>SHOP</h2>
-              <p className="text-gray-300">Merch and exclusive items</p>
-            </div>
-          </div>
+            
+          </main>
+          
+          <Footer />
         </div>
       )}
     </>
