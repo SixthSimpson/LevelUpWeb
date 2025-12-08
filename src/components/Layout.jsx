@@ -104,12 +104,6 @@ const Navbar = () => {
                       Merch
                     </a>
                     <a
-                      href="/vinyl"
-                      className="block px-6 py-3 text-white hover:bg-lime-500/20 hover:text-lime-400 transition-all"
-                    >
-                      Vinyl
-                    </a>
-                    <a
                       href="/accessories"
                       className="block px-6 py-3 text-white hover:bg-lime-500/20 hover:text-lime-400 transition-all"
                     >
@@ -122,7 +116,7 @@ const Navbar = () => {
           </div>
 
           {/* Center logo/title */}
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="flex-1 flex justify-center">
             <h1
               className="text-4xl font-bold tracking-wider"
               style={{
@@ -252,7 +246,7 @@ const Footer = () => {
               LEVEL UP
             </h3>
             <p className="text-gray-400 text-sm">
-              © 2024 Level Up. All rights reserved.
+              © 2025 Level Up. All rights reserved.
             </p>
           </div>
 
@@ -295,37 +289,26 @@ const Footer = () => {
               Stay Connected
             </h4>
             <div className="flex gap-4 mb-4">
-              <a href="https://music.apple.com/artist/yourname" target="_blank" rel="noopener noreferrer">
+              <a href="https://tiktok.com/@LevelUpDub" target="_blank" rel="noopener noreferrer">
               <img 
-                src={appleMusicLogo} 
-                alt="Apple Music" 
+                src={tiktokLogo}
+                alt="TikTok" 
                 className="w-5 h-5 object-contain transition-all"
                 style={{ 
                 filter: 'brightness(0) invert(1)'
                 }}
-                />
+              />
               </a>
 
-              <a href="https://soundcloud.com/levelup999" target="_blank" rel="noopener noreferrer">
-              <img 
-                src={SoundcloudLogo} 
-                alt="Soundcloud" 
-                className="w-5 h-5 object-contain transition-all"
-                style={{ 
-                filter: 'brightness(0) invert(1)'
-                }}
-                />
-              </a>
-              
               <a href="https://www.instagram.com/levelupdub" target="_blank" rel="noopener noreferrer">
-                <img 
+              <img 
                 src={InstagramLogo} 
                 alt="Instagram" 
                 className="w-5 h-5 object-contain transition-all"
                 style={{ 
                 filter: 'brightness(0) invert(1)'
                 }}
-                />
+              />
               </a>
 
               <a href="https://x.com/levelupdub" target="_blank" rel="noopener noreferrer">
@@ -336,8 +319,63 @@ const Footer = () => {
                 style={{ 
                 filter: 'brightness(0) invert(1)'
                 }}
-                />
+              />
               </a>
+
+              <a href="https://www.facebook.com/LEVELUPDUB" target="_blank" rel="noopener noreferrer">
+              <img 
+                  src={FacebookLogo} 
+                  alt="Facebook" 
+                  className="w-5 h-5 object-contain transition-all"
+                  style={{ 
+                  filter: 'brightness(0) invert(1)'
+                  }}
+              />
+              </a>
+
+              <a href="https://music.apple.com/us/artist/level-up/259031099" target="_blank" rel="noopener noreferrer">
+              <img 
+                src={appleMusicLogo} 
+                alt="Apple Music" 
+                className="w-5 h-5 object-contain transition-all"
+                style={{ 
+                filter: 'brightness(0) invert(1)'
+                }}
+              />
+              </a>
+
+              <a href="https://open.spotify.com/artist/1ZpDxqXS6HAvoZyCzQfKRb" target="_blank" rel="noopener noreferrer">
+              <img 
+                src={spotifyLogo} 
+                alt="Spotify" 
+                className="w-5 h-5 object-contain transition-all"
+                style={{ 
+                filter: 'brightness(0) invert(1)'
+                }}
+              />
+              </a>
+
+              <a href="https://soundcloud.com/levelup999" target="_blank" rel="noopener noreferrer">
+              <img 
+                src={SoundcloudLogo} 
+                alt="Soundcloud" 
+                className="w-5 h-5 object-contain transition-all"
+                style={{ 
+                filter: 'brightness(0) invert(1)'
+                }}
+              />
+              </a>
+
+              <a href="https://www.youtube.com/@levelupdub" target="_blank" rel="noopener noreferrer">
+              <img 
+                src={YoutubeLogo} 
+                alt="Youtube" 
+                className="w-6 h-6 object-contain transition-all"
+                style={{ 
+                filter: 'brightness(0) invert(1)'
+                }}
+              />
+            </a>
 
             </div>
             <p className="text-gray-400 text-sm">
