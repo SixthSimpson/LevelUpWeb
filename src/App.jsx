@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import cdjBase from './assets/cdj-base.png';
 import platter from './assets/platter.png';
 import bgPhoto1 from './assets/LevelUpBillGraham.jpg';
+import recentRelease from './assets/Believe.png';
 import { Navbar, Footer } from './components/Layout';
 
 // Twinkling Stars Component
@@ -201,7 +202,7 @@ export default function App() {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              opacity: '0.5',
+              opacity: '0.90',
               filter: 'grayscale(20%) brightness(0.7)'
             }}
           />
@@ -220,13 +221,53 @@ export default function App() {
           <main className="flex-grow pt-20 relative z-10">
             <TwinklingStars />
 
-            <div className="flex flex-col items-center justify-center text-center px-4 py-20 min-h-screen">
-              <h1 className="text-8xl font-black mb-5 tracking-tight z-10" style={{ 
-                color: '#fff',
-                textShadow: '0 0 40px rgba(0, 255, 0, 1), 0 0 80px rgba(0, 255, 0, 0.5), 0 0 120px rgba(0, 255, 0, 0.3)'
+            <div className="flex flex-col items-center justify-center text-center px-4 py-16">
+              <h1 className="text-6xl font-black mb-4 tracking-tight z-10" style={{
+                fontFamily: "'Metal Mania', cursive",
+                color: '#a855f7',
+                //color: '#fff',
+                textShadow: '0 0 20px rgba(168, 85, 247, 1)',
               }}>
-                LEVEL UP
+                RECENT RELEASE
               </h1>
+              
+              {/* Clickable Image Card */}
+              <a 
+                href="https://open.spotify.com/track/2HGWEdmzqykDOKbAxRd1JE" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-4 mb-4 block group"
+              >
+                <div 
+                  className="relative overflow-hidden rounded-lg border-2 transition-all duration-300 hover:scale-105"
+                  style={{
+                    borderColor: 'rgba(168, 85, 247, 0.5)',
+                    boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 1)';
+                    e.currentTarget.style.boxShadow = '0 0 40px rgba(168, 85, 247, 0.8)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+                    e.currentTarget.style.boxShadow = '0 0 20px rgba(168, 85, 247, 0.3)';
+                  }}
+                >
+                  <img 
+                    src={recentRelease} 
+                    alt="recentRelease"
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  
+                  {/* Optional: Overlay text */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white text-2xl font-black opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      CLICK TO LISTEN
+                    </span>
+                  </div>
+                </div>
+              </a>
+              
             </div>
             
           </main>

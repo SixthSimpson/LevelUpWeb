@@ -14,7 +14,7 @@ const Navbar = () => {
   const [shopOpen, setShopOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-sm z-50 border-b-2 border-lime-500/20">
+    <nav className="fixed top-0 w-full bg-black/65 backdrop-blur-sm z-50 border-b-2 border-lime-500/20">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
 
@@ -231,7 +231,7 @@ const Navbar = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-black border-t-2 border-lime-500/20 py-8 relative z-50">
+    <footer className="bg-black/65 border-t-2 border-lime-500/20 py-8 relative z-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
