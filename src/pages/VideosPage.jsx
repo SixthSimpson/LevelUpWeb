@@ -104,66 +104,102 @@ export default function VideosPage() {
               VIDEOS
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {videos.map((video, index) => (
-                <div
-                  key={index}
-                  className="group rounded-lg border-2 overflow-hidden transition-all duration-300 hover:scale-105 flex flex-col"
-                  style={{
-                    borderColor: 'rgba(0, 255, 0, 0.3)',
-                    boxShadow: '0 0 20px rgba(0, 255, 0, 0.2)',
-                    backgroundColor: '#000',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.8)';
-                    e.currentTarget.style.boxShadow = '0 0 40px rgba(0, 255, 0, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(0, 255, 0, 0.3)';
-                    e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.2)';
-                  }}
-                >
-                  {/* YouTube Embed or Thumbnail */}
-                  <div className="relative w-full overflow-hidden" style={{ paddingBottom: '56.25%' }}>
-                    {video.useThumbnail ? (
-                      <a
-                        href={`https://www.youtube.com/watch?v=${video.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute top-0 left-0 w-full h-full group/thumb"
+            {/* Videos Grid - Creative Layout */}
+            <div className="max-w-6xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-8">
+                {videos.map((video, index) => {
+                  // Alternate positioning patterns for visual interest
+                  const rotations = ['rotate-[-2deg]', 'rotate-[1deg]', 'rotate-[-1deg]', 'rotate-[2deg]'];
+                  const rotation = rotations[index % rotations.length];
+
+                  return (
+                    <div
+                      key={index}
+                      className={`group ${rotation} hover:rotate-0 transition-all duration-500 hover:scale-105 hover:z-10`}
+                      style={{
+                        width: 'clamp(300px, 90vw, 480px)',
+                        marginTop: index % 2 === 0 ? '0' : '2rem',
+                      }}
+                    >
+                      {/* Polaroid-style card */}
+                      <div
+                        className="rounded-xl overflow-hidden shadow-2xl"
+                        style={{
+                          backgroundColor: '#000',
+                          border: '8px solid #1a1a1a',
+                          boxShadow: '0 10px 40px rgba(0, 255, 0, 0.15), 0 0 30px rgba(0, 255, 0, 0.1)',
+                        }}
                       >
-                        <img
-                          src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
-                          alt={video.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/60 transition-all duration-300 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover/thumb:scale-110 transition-transform duration-300">
-                            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
+                        {/* Decorative sparkles */}
+                        <div className="relative">
+                          <div className="absolute -top-2 -right-2 text-2xl animate-pulse z-20">✨</div>
+                          <div className="absolute -top-1 -left-3 text-xl animate-pulse z-20" style={{ animationDelay: '0.5s' }}>⭐</div>
+
+                          {/* YouTube Embed or Thumbnail */}
+                          <div className="relative w-full overflow-hidden bg-black" style={{ paddingBottom: '56.25%' }}>
+                            {video.useThumbnail ? (
+                              <a
+                                href={`https://www.youtube.com/watch?v=${video.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute inset-0 group/thumb"
+                              >
+                                <img
+                                  src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                                  alt={video.title}
+                                  className="absolute inset-0 w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/30 group-hover/thumb:bg-black/10 transition-all flex items-center justify-center">
+                                  <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover/thumb:scale-110 transition-transform shadow-lg">
+                                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </a>
+                            ) : (
+                              <iframe
+                                className="absolute inset-0 w-full h-full"
+                                src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
+                                title={video.title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                              />
+                            )}
                           </div>
                         </div>
-                      </a>
-                    ) : (
-                      <iframe
-                        className="absolute top-0 left-0 w-full h-full"
-                        src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
 
-                  {/* Video Title */}
-                  <div className="p-4 bg-gray-900 w-full">
-                    <h3 className="text-white text-lg font-bold">{video.title}</h3>
-                  </div>
-                </div>
-              ))}
+                        {/* Polaroid-style bottom section with handwritten feel */}
+                        <div
+                          className="p-6 relative"
+                          style={{
+                            background: 'linear-gradient(to bottom, #0a0a0a, #1a1a1a)',
+                            borderTop: '2px solid rgba(0, 255, 0, 0.2)',
+                          }}
+                        >
+                          <h3
+                            className="text-white text-lg font-bold text-center leading-snug"
+                            style={{
+                              textShadow: '0 0 8px rgba(0, 255, 0, 0.4)',
+                              color: '#00ff00',
+                            }}
+                          >
+                            {video.title}
+                          </h3>
+
+                          {/* Cute decorative line */}
+                          <div className="mt-3 flex justify-center items-center gap-2">
+                            <div className="h-px w-12 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent"></div>
+                            <div className="text-lime-400 text-xs">🎵</div>
+                            <div className="h-px w-12 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
