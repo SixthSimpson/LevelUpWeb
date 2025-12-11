@@ -49,18 +49,22 @@ export default function VideosPage() {
     {
       id: 'R9pZMUJ4Ubw',
       title: 'LEVEL UP Live @ EDC Las Vegas 2025',
+      useThumbnail: true,
     },
     {
       id: 'k4wALBhtcio',
       title: 'Level Up Live @ Lost Lands 2024 - Full Set',
+      useThumbnail: true,
     },
     {
       id: '2javfeqlYAU',
       title: 'Subtronics x Level Up - Power (feat. Grabbitz)',
+      useThumbnail: false,
     },
     {
       id: 'r3rhvFwdAvc',
       title: 'Chappell Roan - Good Luck, Babe! (LEVEL UP & Levity Remix)',
+      useThumbnail: true,
     },
   ];
 
@@ -119,17 +123,39 @@ export default function VideosPage() {
                     e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.2)';
                   }}
                 >
-                  {/* YouTube Embed */}
+                  {/* YouTube Embed or Thumbnail */}
                   <div className="relative w-full overflow-hidden" style={{ paddingBottom: '56.25%' }}>
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
-                      title={video.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                    />
+                    {video.useThumbnail ? (
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-0 left-0 w-full h-full group/thumb"
+                      >
+                        <img
+                          src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                          alt={video.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover/thumb:bg-black/60 transition-all duration-300 flex items-center justify-center">
+                          <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover/thumb:scale-110 transition-transform duration-300">
+                            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
+                    ) : (
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full"
+                        src={`https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1`}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    )}
                   </div>
 
                   {/* Video Title */}

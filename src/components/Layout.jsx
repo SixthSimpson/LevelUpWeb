@@ -82,17 +82,19 @@ export const Navbar = () => {
 
           {/* Center logo/title */}
           <div className="flex-1 flex justify-start md:justify-center pl-2">
-            <h1
-              className="text-4xl font-bold tracking-wider"
-              style={{
-                fontFamily: "'Metal Mania', cursive",
-                color: '#00ff00',
-                textShadow: '0 0 6px rgba(0, 255, 0, 0.5)',
-                letterSpacing: '0.1em',
-              }}
-            >
-              LEVEL UP
-            </h1>
+            <a href="/">
+              <h1
+                className="text-4xl font-bold tracking-wider cursor-pointer"
+                style={{
+                  fontFamily: "'Metal Mania', cursive",
+                  color: '#00ff00',
+                  textShadow: '0 0 6px rgba(0, 255, 0, 0.5)',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                LEVEL UP
+              </h1>
+            </a>
           </div>
 
           {/* Mobile hamburger / drawer */}
