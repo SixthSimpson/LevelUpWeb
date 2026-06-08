@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MobileNav } from './MobileNav';
+import levelUpLogo from "../assets/LEVEL_UP_LOGO_lime_trimmed.png";
 import tiktokLogo from "../assets/SocialMediaAndMusic/TikTok.png";
 import spotifyLogo from "../assets/SocialMediaAndMusic/Spotify.png";
 import appleMusicLogo from "../assets/SocialMediaAndMusic/Apple.png";
@@ -83,17 +84,12 @@ export const Navbar = () => {
           {/* Center logo/title */}
           <div className="flex-1 flex justify-start md:justify-center pl-2">
             <a href="/">
-              <h1
-                className="text-4xl font-bold tracking-wider cursor-pointer"
-                style={{
-                  fontFamily: "'Metal Mania', cursive",
-                  color: '#00ff00',
-                  textShadow: '0 0 6px rgba(0, 255, 0, 0.5)',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                LEVEL UP
-              </h1>
+              <img
+                src={levelUpLogo}
+                alt="Level Up"
+                className="h-12 w-auto cursor-pointer"
+                style={{ filter: 'drop-shadow(0 0 6px rgba(0, 255, 0, 0.5))' }}
+              />
             </a>
           </div>
 
@@ -212,15 +208,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <h3
-              className="text-2xl font-black mb-4"
-              style={{
-                color: '#00ff00',
-                textShadow: '0 0 5px rgba(0, 255, 0, 0.3)',
-              }}
-            >
-              LEVEL UP
-            </h3>
+            <img
+              src={levelUpLogo}
+              alt="Level Up"
+              className="h-10 w-auto mb-4"
+              style={{ filter: 'drop-shadow(0 0 5px rgba(0, 255, 0, 0.3))' }}
+            />
             <p className="text-gray-400 text-sm">
               © 2025 Level Up. All rights reserved.
             </p>

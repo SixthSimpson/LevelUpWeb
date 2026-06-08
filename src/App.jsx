@@ -5,15 +5,23 @@ import Releases from './pages/Releases';
 import TourPage from './pages/TourPage';
 import VideosPage from './pages/VideosPage';
 
-export default function App() {
+function AppContent() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/releases" element={<Releases />} />
         <Route path="/tour" element={<TourPage />} />
         <Route path="/videos" element={<VideosPage />} />
       </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

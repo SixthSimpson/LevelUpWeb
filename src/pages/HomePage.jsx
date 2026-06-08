@@ -7,6 +7,7 @@ import bgVideo1 from '../assets/HauntedMansionLoop.mp4';
 import recentRelease from '../assets/MusicReleases/Believe.png';
 import { Navbar, Footer } from '../components/Layout';
 import { TourDates } from '../components/TourDates';
+import { FramesLoader } from '../components/FramesLoader';
 
 // Twinkling Stars Component
 const TwinklingStars = () => {
@@ -188,8 +189,9 @@ export default function HomePage() {
 
   return (
     <>
-      <CDJLoader onLoadComplete={() => setShowContent(true)} />
-      
+      <FramesLoader onLoadComplete={() => setShowContent(true)} />
+      {/* <CDJLoader onLoadComplete={() => setShowContent(true)} /> */}
+
       {showContent && (
         <div className="min-h-screen bg-black">
           <Navbar />
