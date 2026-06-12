@@ -4,10 +4,11 @@ import cdjBase from '../assets/cdj-base.png';
 import platter from '../assets/platter.png';
 import bgPhoto1 from '../assets/LevelUpBillGraham.jpg';
 import bgVideo1 from '../assets/HauntedMansionLoop.mp4';
-import recentRelease from '../assets/MusicReleases/Believe.png';
+import recentReleaseCover from '../assets/MusicReleases/LevelUpxZingara.jpg';
 import { Navbar, Footer } from '../components/Layout';
 import { TourDates } from '../components/TourDates';
 import { FramesLoader } from '../components/FramesLoader';
+import unreleasedTrack from '../assets/Mp3/Mzg1ODMxNTIzMzg1ODM3_JzthsfvUY24.MP3';
 
 // Twinkling Stars Component
 const TwinklingStars = () => {
@@ -183,6 +184,75 @@ const CDJLoader = ({ onLoadComplete }) => {
   );
 };
 
+// Ghost Easter Egg Player
+const GhostPlayer = () => {
+  const [playing, setPlaying] = useState(false);
+  const [discovered, setDiscovered] = useState(false);
+  const audioRef = useRef(null);
+
+  const toggle = () => {
+    if (!audioRef.current) return;
+    if (playing) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+      setDiscovered(true);
+    }
+    setPlaying(!playing);
+  };
+
+  return (
+    <>
+      <style>{`
+        @keyframes ghostFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes ghostWiggle {
+          0%, 100% { transform: translateY(-4px) rotate(-5deg); }
+          50% { transform: translateY(-12px) rotate(5deg); }
+        }
+      `}</style>
+
+      <audio
+        ref={audioRef}
+        src={unreleasedTrack}
+        onEnded={() => setPlaying(false)}
+      />
+
+      <button
+        onClick={toggle}
+        className="fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center opacity-20 hover:opacity-80 transition-opacity duration-500 cursor-pointer"
+        style={{ animation: playing ? 'ghostWiggle 0.6s ease-in-out infinite' : 'ghostFloat 3s ease-in-out infinite' }}
+        title="👻"
+        aria-label="secret"
+      >
+        <svg viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          {/* Body */}
+          <path
+            d="M20 3C11.7 3 5 9.7 5 18v26l4.5-3.5L14 44l4.5-3.5 3 2.5 3-2.5L29 44l4.5-3.5L35 44V18C35 9.7 28.3 3 20 3z"
+            fill={playing ? '#00ff00' : 'white'}
+            style={{ filter: playing ? 'drop-shadow(0 0 6px rgba(0,255,0,0.8))' : 'none', transition: 'fill 0.3s' }}
+          />
+          {/* Eyes */}
+          {playing ? (
+            <>
+              <text x="12" y="23" fontSize="8" fill="#000" fontWeight="bold">♪</text>
+              <text x="22" y="23" fontSize="8" fill="#000" fontWeight="bold">♪</text>
+            </>
+          ) : (
+            <>
+              <circle cx="15" cy="20" r="2.5" fill="#1a1a1a" />
+              <circle cx="25" cy="20" r="2.5" fill="#1a1a1a" />
+              <path d="M14 26 Q20 30 26 26" stroke="#1a1a1a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            </>
+          )}
+        </svg>
+      </button>
+    </>
+  );
+};
+
 // Main HomePage Component
 export default function HomePage() {
   const [showContent, setShowContent] = useState(false);
@@ -195,22 +265,19 @@ export default function HomePage() {
       {showContent && (
         <div className="min-h-screen bg-black">
           <Navbar />
+          <GhostPlayer />
           
           <main className="relative">
 
-            {/* SECTION 1: RECENT RELEASE WITH VIDEO */}
+            {/* SECTION 1: RECENT RELEASE */}
             <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
-              {/* Video Background */}
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover z-0"
-                style={{
-                  opacity: '0.70',
-                  filter: 'grayscale(20%) brightness(0.8)'
-                }}
+                style={{ opacity: '0.70', filter: 'grayscale(20%) brightness(0.8)' }}
               >
                 <source src={bgVideo1} type="video/mp4" />
               </video>
@@ -223,14 +290,11 @@ export default function HomePage() {
                 }}
               />
 
-              {/* Bottom Fade to Black for Smooth Transition */}
               <div
                 className="absolute bottom-0 left-0 right-0 h-48 z-5"
-                style={{
-                  background: 'linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%)'
-                }}
+                style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%)' }}
               />
-              
+
               <div className="absolute inset-0 z-10">
                 <TwinklingStars />
               </div>
@@ -243,14 +307,14 @@ export default function HomePage() {
                 }}>
                   RECENT RELEASE
                 </h1>
-                
+
                 <a
-                  href="https://open.spotify.com/track/2HGWEdmzqykDOKbAxRd1JE"
+                  href="https://soundcloud.com/levelup999/sets/parallel-spirits-ep"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 mb-4 block group w-64 sm:w-80 md:max-w-md md:w-full px-4"
                 >
-                  <div 
+                  <div
                     className="relative overflow-hidden rounded-lg border-2 transition-all duration-300 hover:scale-105"
                     style={{
                       borderColor: 'rgba(168, 85, 247, 0.5)',
@@ -265,12 +329,11 @@ export default function HomePage() {
                       e.currentTarget.style.boxShadow = '0 0 20px rgba(168, 85, 247, 0.3)';
                     }}
                   >
-                    <img 
-                      src={recentRelease} 
-                      alt="Recent Release"
+                    <img
+                      src={recentReleaseCover}
+                      alt="Parallel Spirits EP"
                       className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-all duration-300 flex items-center justify-center">
                       <span
                         className="text-2xl font-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -286,7 +349,12 @@ export default function HomePage() {
                   </div>
                 </a>
 
-                <div className="mt-12 flex flex-col items-center">
+                <p className="text-white font-bold text-lg mb-1" style={{ fontFamily: "'Metal Mania', cursive" }}>
+                  Parallel Spirits EP
+                </p>
+                <p className="text-gray-400 text-sm mb-10">LEVEL UP × Zingara</p>
+
+                <div className="flex flex-col items-center">
                   <p className="text-lime-400 text-sm md:text-base font-bold uppercase tracking-widest mb-2" style={{
                     textShadow: '0 0 10px rgba(0, 255, 0, 0.6)'
                   }}>

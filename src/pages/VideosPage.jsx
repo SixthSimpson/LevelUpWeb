@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Footer } from '../components/Layout';
-import bgImage from '../assets/LevelUpHardSummer.jpg';
+import bgImage from '../assets/LevelUpBillGraham.jpg';
 
 const TwinklingStars = () => {
   const starPositions = [
@@ -47,14 +47,24 @@ export default function VideosPage() {
 
   const videos = [
     {
+      id: 'uYLk84L1-Cs',
+      title: 'LEVEL UP Live at EDC Las Vegas 2026 (Official Full Set)',
+      useThumbnail: false,
+    },
+    {
+      id: 'K2LZYQKZqN4',
+      title: 'Level Up Live @ Lost Lands 2025 - Full Set',
+      useThumbnail: false,
+    },
+    {
       id: 'R9pZMUJ4Ubw',
       title: 'LEVEL UP Live @ EDC Las Vegas 2025',
-      useThumbnail: true,
+      useThumbnail: false,
     },
     {
       id: 'k4wALBhtcio',
       title: 'Level Up Live @ Lost Lands 2024 - Full Set',
-      useThumbnail: true,
+      useThumbnail: false,
     },
     {
       id: '2javfeqlYAU',
@@ -64,7 +74,7 @@ export default function VideosPage() {
     {
       id: 'r3rhvFwdAvc',
       title: 'Chappell Roan - Good Luck, Babe! (LEVEL UP & Levity Remix)',
-      useThumbnail: true,
+      useThumbnail: false,
     },
   ];
 
@@ -148,6 +158,10 @@ export default function VideosPage() {
                                   src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                                   alt={video.title}
                                   className="absolute inset-0 w-full h-full object-cover"
+                                  onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                                  }}
                                 />
                                 <div className="absolute inset-0 bg-black/30 group-hover/thumb:bg-black/10 transition-all flex items-center justify-center">
                                   <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover/thumb:scale-110 transition-transform shadow-lg">
